@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id               String     @id @default(cuid())
+  firstName        String
+  lastName         String
+  email            String     @unique
+  mobileNumber     String
+  passwordHash     String
+  createdAt        DateTime   @default(now())
+  accountType      String
+  status           String
+  portfolioBalance Float
+  allTimeEarnings  Float
+  estimatedYield   Float
+  maxRiskPerDay    Float
+  role             Role       @default(USER)
+  activities       Activity[]
+}
+
+model Activity {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  type          String   // 'deposit' | 'withdrawal' | 'earning'
+  description   String
+  date          DateTime
+  tradeId       String?
+  commissionFee Float
+  amount        Float
+}
+
