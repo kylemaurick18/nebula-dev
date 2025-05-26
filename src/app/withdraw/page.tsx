@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function WithdrawPage() {
   const { data: session, status } = useSession()
@@ -34,7 +35,7 @@ export default function WithdrawPage() {
     <div className="body">
 
       <div className="page-header">
-        <img src="/images/nebula-dashboard-icon.png" className="dashboard-icon-desktop" alt="" loading="eager" />
+        <Image src="/images/nebula-dashboard-icon.png" className="dashboard-icon-desktop" alt="" loading="eager" />
 
         <div className="mobile-menu-btn">
           <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,8 +55,8 @@ export default function WithdrawPage() {
 
         <div className="page-header-text">Portfolio</div>
 
-        <img src="/images/Ellipse-123.svg" width={28} height={28} alt="" className="ellipse-123" />
-        <img src="/images/nebula-dashboard-icon.png" className="dashboard-icon-mobile" alt="" loading="eager" />
+        <Image src="/images/Ellipse-123.svg" width={28} height={28} alt="" className="ellipse-123" />
+        <Image src="/images/nebula-dashboard-icon.png" className="dashboard-icon-mobile" alt="" loading="eager" />
       </div>
 
       <div className="page-container">

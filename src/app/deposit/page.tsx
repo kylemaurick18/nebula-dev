@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function DepositPage() {
   const { data: session, status } = useSession()
@@ -33,7 +34,7 @@ export default function DepositPage() {
   return (
     <div className="body">
       <div className="page-header">
-        <img
+        <Image
           src="/images/nebula-dashboard-icon.png"
           loading="eager"
           alt=""
@@ -58,8 +59,8 @@ export default function DepositPage() {
 
         <div className="page-header-text">Deposit</div>
 
-        <img src="/images/Ellipse-123.svg" loading="lazy" width={28} height={28} alt="" className="ellipse-123" />
-        <img src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-mobile" />
+        <Image src="/images/Ellipse-123.svg" loading="lazy" width={28} height={28} alt="" className="ellipse-123" />
+        <Image src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-mobile" />
       </div>
 
       <div className="page-container">
@@ -118,7 +119,7 @@ export default function DepositPage() {
               </div>
 
               <div className="wallet-qr-code">
-                <img
+                <Image
                   src="/images/USDT-WALLET-QR-CODE.png"
                   loading="lazy"
                   alt="Wallet QR"

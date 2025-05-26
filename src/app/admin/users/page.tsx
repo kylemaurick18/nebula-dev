@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import Link from 'next/link'
+import Image from 'next/image'
 
 export default function AdminUsersPage() {
   const { data: session, status } = useSession()
@@ -30,7 +32,7 @@ export default function AdminUsersPage() {
   return (
     <div>
       <div className="page-header">
-        <img src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-desktop" />
+        <Image src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-desktop" />
         <div className="mobile-menu-btn">
           <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20.6882 20.3262L10.3343 20.3262" stroke="white" strokeWidth="2" strokeLinecap="round" />
@@ -45,8 +47,8 @@ export default function AdminUsersPage() {
           </svg>
         </div>
         <div className="page-header-text">Users</div>
-        <img src="/images/Ellipse-123.svg" loading="lazy" width={28} height={28} alt="" className="ellipse-123" />
-        <img src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-mobile" />
+        <Image src="/images/Ellipse-123.svg" loading="lazy" width={28} height={28} alt="" className="ellipse-123" />
+        <Image src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-mobile" />
       </div>
       <div className="page-container">
         <div className="side-menu">

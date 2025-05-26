@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 export default function SignInPage() {
   const router = useRouter()
@@ -30,12 +31,12 @@ export default function SignInPage() {
     <div className="auth-card-container">
       <div className="auth-card">
         <div id="grain" className="auth-card-graphics-container">
-          <img
+          <Image
             src="/images/login-graphics.webp"
             alt=""
             className="auth-graphics"
           />
-          <img
+          <Image
             src="/images/login-graphics-mobile.webp"
             alt=""
             className="auth-graphics-mobile"
