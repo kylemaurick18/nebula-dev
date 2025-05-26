@@ -4,13 +4,14 @@
 import { useRouter, useParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 export default function EditUserPage() {
   const { id } = useParams()
   const router = useRouter()
   const { data: session, status } = useSession()
 
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<Linkny>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
 
@@ -109,7 +110,7 @@ export default function EditUserPage() {
       </div>
       <div className="page-container">
         <div className="side-menu">
-          <a href="/admin/users" className="menu-btn">
+          <Link href="/admin/users" className="menu-btn">
             <div className="btn-icon">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.4384 4.15572C10.4384 5.45958 9.34653 6.5166 7.99911 6.5166C6.65169 6.5166 5.55981 5.45958 5.55981 4.15572C5.55981 2.85186 6.65169 1.79541 7.99911 1.79541C9.34653 1.79541 10.4384 2.85244 10.4384 4.15572Z" stroke="white" strokeLinecap="round" strokeLinejoin="round" />
@@ -117,7 +118,7 @@ export default function EditUserPage() {
               </svg>
             </div>
             <div>Users</div>
-          </a>
+          </Link>
           <button className="menu-btn last" onClick={() => router.push('/sign-in')}>
             <div className="btn-icon">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

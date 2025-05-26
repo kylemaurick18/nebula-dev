@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -21,7 +22,7 @@ export default function Home() {
         </ol>
 
         <div className={styles.ctas}>
-          <a
+          <Link
             className={styles.primary}
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
@@ -35,19 +36,19 @@ export default function Home() {
               height={20}
             />
             Deploy now
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.secondary}
           >
             Read our docs
-          </a>
+          </Link>
         </div>
       </main>
       <footer className={styles.footer}>
-        <a
+        <Link
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
@@ -60,8 +61,8 @@ export default function Home() {
             height={16}
           />
           Learn
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
@@ -74,8 +75,8 @@ export default function Home() {
             height={16}
           />
           Examples
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
@@ -88,7 +89,7 @@ export default function Home() {
             height={16}
           />
           Go to nextjs.org →
-        </a>
+        </Link>
       </footer>
     </div>
   );
