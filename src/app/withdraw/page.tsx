@@ -35,7 +35,7 @@ export default function WithdrawPage() {
     <div className="body">
 
       <div className="page-header">
-        <Image src="/images/nebula-dashboard-icon.png" className="dashboard-icon-desktop" alt="" loading="eager" />
+        <Image src="/images/nebula-dashboard-icon.png" className="dashboard-icon-desktop" alt="" loading="eager" width={30} height={30}/>
 
         <div className="mobile-menu-btn">
           <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@ export default function WithdrawPage() {
         <div className="page-header-text">Portfolio</div>
 
         <Image src="/images/Ellipse-123.svg" width={28} height={28} alt="" className="ellipse-123" />
-        <Image src="/images/nebula-dashboard-icon.png" className="dashboard-icon-mobile" alt="" loading="eager" />
+        <Image src="/images/nebula-dashboard-icon.png" className="dashboard-icon-mobile" alt="" loading="eager" width={30} height={30}/>
       </div>
 
       <div className="page-container">

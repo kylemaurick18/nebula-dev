@@ -92,7 +92,7 @@ export default function DashboardPage() {
   return (
     <div>
       <div className="page-header">
-        <Image src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-desktop"/>
+        <Image src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-desktop" width={30} height={30}/>
         <div className="mobile-menu-btn">
           <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20.6882 20.3262L10.3343 20.3262" stroke="white" strokeWidth="2" strokeLinecap="round" />
@@ -108,7 +108,7 @@ export default function DashboardPage() {
         </div>
         <div className="page-header-text">Portfolio</div>
         <Image src="/images/Ellipse-123.svg" loading="lazy" width={28} height={28} alt="" className="ellipse-123"/>
-        <Image src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-mobile"/>
+        <Image src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-mobile" width={30} height={30}/>
       </div>
       <div className="page-container">
         <div className="side-menu">

@@ -35,6 +35,8 @@ export default function DepositPage() {
     <div className="body">
       <div className="page-header">
         <Image
+          width={30}
+          height={30}
           src="/images/nebula-dashboard-icon.png"
           loading="eager"
           alt=""
@@ -60,7 +62,7 @@ export default function DepositPage() {
         <div className="page-header-text">Deposit</div>
 
         <Image src="/images/Ellipse-123.svg" loading="lazy" width={28} height={28} alt="" className="ellipse-123" />
-        <Image src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-mobile" />
+        <Image src="/images/nebula-dashboard-icon.png" loading="eager" alt="" className="dashboard-icon-mobile" width={30} height={30}/>
       </div>
 
       <div className="page-container">
@@ -120,6 +122,8 @@ export default function DepositPage() {
 
               <div className="wallet-qr-code">
                 <Image
+                  width={323}
+                  height={323}
                   src="/images/USDT-WALLET-QR-CODE.png"
                   loading="lazy"
                   alt="Wallet QR"
