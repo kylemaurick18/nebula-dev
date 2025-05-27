@@ -34,21 +34,32 @@ export default function WithdrawPage() {
   // Fetch user data
   useEffect(() => {
     if (status === 'loading') return
-    if (!session) {
+
+    if (status === 'unauthenticated') {
       router.push('/sign-in')
       return
     }
 
-    fetch('/api/activities')
-      .then(res => res.json())
-      .then(data => {
-        setUser(data)
-        setLoading(false)
-      })
-  }, [status, session])
+    if (session) {
+      fetch('/api/activities')
+        .then(res => res.json())
+        .then(data => {
+          setUser(data)
+          setLoading(false)
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error)
+          setLoading(false)
+        })
+    }
+  }, [status, session, router])
 
-  if (loading || status === 'loading') {
+  if (status === 'loading' || loading) {
     return <div className="text-white p-8">Loading withdraw page...</div>
+  }
+
+  if (!session) {
+    return null
   }
 
   return (
