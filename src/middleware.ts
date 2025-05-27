@@ -3,36 +3,26 @@ import { NextResponse } from 'next/server'
 
 export default withAuth(
   function middleware(req) {
+    const path = req.nextUrl.pathname
     const token = req.nextauth.token
-    const isAuth = !!token
-    const isAuthPage = req.nextUrl.pathname.startsWith('/sign-in')
 
-    if (isAuthPage) {
-      if (isAuth) {
-        return NextResponse.redirect(new URL('/dashboard', req.url))
-      }
-      return null
+    // If the user is authenticated and trying to access the root path,
+    // redirect them to the dashboard
+    if (path === '/' && token) {
+      return NextResponse.redirect(new URL('/dashboard', req.url))
     }
 
-    if (!isAuth) {
-      let from = req.nextUrl.pathname
-      if (req.nextUrl.search) {
-        from += req.nextUrl.search
-      }
-
-      return NextResponse.redirect(
-        new URL(`/sign-in?from=${encodeURIComponent(from)}`, req.url)
-      )
+    // Check admin access for admin routes
+    if (path.startsWith('/admin') && token?.role !== 'ADMIN') {
+      return NextResponse.redirect(new URL('/dashboard', req.url))
     }
 
+    // For all other cases, just continue with the request
     return NextResponse.next()
   },
   {
     callbacks: {
       authorized: ({ token }) => !!token
-    },
-    pages: {
-      signIn: '/sign-in'
     }
   }
 )
@@ -40,10 +30,10 @@ export default withAuth(
 // Protect all routes under these paths
 export const config = {
   matcher: [
+    '/',
     '/dashboard/:path*',
     '/deposit/:path*',
     '/withdraw/:path*',
-    '/admin/:path*',
-    '/sign-in'
+    '/admin/:path*'
   ]
 } 

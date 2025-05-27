@@ -34,6 +34,7 @@ export const authOptions: NextAuthOptions = {
           id: user.id,
           email: user.email,
           name: `${user.firstName} ${user.lastName}`,
+          role: user.role
         }
       }
     })
@@ -52,12 +53,14 @@ export const authOptions: NextAuthOptions = {
         session.user.id = token.id as string
         session.user.name = token.name as string
         session.user.email = token.email as string
+        session.user.role = token.role as string
       }
       return session
     },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id
+        token.role = user.role
       }
       return token
     }
@@ -69,13 +72,12 @@ export const authOptions: NextAuthOptions = {
   },
   cookies: {
     sessionToken: {
-      name: `__Secure-next-auth.session-token`,
+      name: `next-auth.session-token`,
       options: {
         httpOnly: true,
         sameSite: 'lax',
         path: '/',
-        secure: true,
-        domain: process.env.NODE_ENV === 'production' ? '.vercel.app' : undefined
+        secure: process.env.NODE_ENV === 'production'
       }
     }
   }
