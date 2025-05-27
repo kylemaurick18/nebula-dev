@@ -4,7 +4,7 @@ import prisma from '@/lib/prisma'
 
 export async function DELETE(
   req: Request,
-  context: { params: { id: string } }
+  context: { params: Record<string, string> }
 ) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
 
