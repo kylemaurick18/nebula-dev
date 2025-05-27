@@ -11,6 +11,25 @@ export default function DepositPage() {
   const router = useRouter()
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+  const [isMenuActive, setIsMenuActive] = useState(false)
+
+  // Mobile menu functionality
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const sideMenu = document.querySelector('.side-menu')
+      const menuButton = document.querySelector('.mobile-menu-btn')
+      
+      if (sideMenu && menuButton) {
+        const isClickInside = sideMenu.contains(event.target as Node) || menuButton.contains(event.target as Node)
+        if (!isClickInside && isMenuActive) {
+          setIsMenuActive(false)
+        }
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [isMenuActive])
 
   // Fetch user data
   useEffect(() => {
@@ -28,38 +47,6 @@ export default function DepositPage() {
       })
   }, [status, session])
 
-  // Mobile menu toggle logic
-  useEffect(() => {
-    const menuButton = document.querySelector('.mobile-menu-btn');
-    const sideMenu = document.querySelector('.side-menu');
-
-    if (!menuButton || !sideMenu) return;
-
-    const toggleMenu = (event: Event) => {
-      event.stopPropagation();
-      sideMenu.classList.toggle('active');
-    };
-
-    const handleClickOutside = (event: Event) => {
-      const target = event.target as HTMLElement;
-      if (
-        !sideMenu.contains(target) &&
-        !menuButton.contains(target) &&
-        sideMenu.classList.contains('active')
-      ) {
-        sideMenu.classList.remove('active');
-      }
-    };
-
-    menuButton.addEventListener('click', toggleMenu);
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      menuButton.removeEventListener('click', toggleMenu);
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [])
-
   if (loading || status === 'loading') {
     return <div className="text-white p-8">Loading deposit page...</div>
   }
@@ -76,7 +63,10 @@ export default function DepositPage() {
           className="dashboard-icon-desktop"
         />
 
-        <div className="mobile-menu-btn">
+        <div className="mobile-menu-btn" onClick={(e) => {
+          e.stopPropagation()
+          setIsMenuActive(!isMenuActive)
+        }}>
           <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20.6882 20.3262L10.3343 20.3262" stroke="white" strokeWidth="2" strokeLinecap="round" />
             <path d="M20.6882 15.3262L10.3343 15.3262" stroke="white" strokeWidth="2" strokeLinecap="round" />
@@ -99,7 +89,7 @@ export default function DepositPage() {
       </div>
 
       <div className="page-container">
-        <div className="side-menu">
+        <div className={`side-menu ${isMenuActive ? 'active' : ''}`}>
           <Link href="/dashboard" className="menu-btn">
             <div className="btn-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6.08146 12.4765V8.6394C6.08146 8.46981 6.01408 8.30711 5.89415 8.18721C5.77422 8.0673 5.61156 7.99989 5.44195 7.99989H2.8839C2.71429 7.99989 2.55163 8.0673 2.43169 8.18721C2.31176 8.30711 2.24438 8.46981 2.24438 8.6394V12.4765C2.24438 12.6461 2.31176 12.8088 2.43169 12.9287C2.55163 13.0486 2.71429 13.116 2.8839 13.116M6.08146 12.4765C6.08146 12.6461 6.01408 12.8088 5.89415 12.9287C5.77422 13.0486 5.61156 13.116 5.44195 13.116H2.8839M6.08146 12.4765C6.08146 12.6461 6.14884 12.8088 6.26877 12.9287C6.3887 13.0486 6.55136 13.116 6.72097 13.116H9.27903C9.44862 13.116 9.61132 13.0486 9.73122 12.9287C9.85113 12.8088 9.91854 12.6461 9.91854 12.4765M6.08146 12.4765V6.08135C6.08146 5.91174 6.14884 5.74908 6.26877 5.62915C6.3887 5.50922 6.55136 5.44184 6.72097 5.44184H9.27903C9.44862 5.44184 9.61132 5.50922 9.73122 5.62915C9.85113 5.74908 9.91854 5.91174 9.91854 6.08135V12.4765M2.8839 13.116H11.8371M9.91854 12.4765C9.91854 12.6461 9.98594 12.8088 10.1059 12.9287C10.2258 13.0486 10.3885 13.116 10.5581 13.116H13.1161C13.2857 13.116 13.4484 13.0486 13.5683 12.9287C13.6882 12.8088 13.7556 12.6461 13.7556 12.4765V3.5233C13.7556 3.35369 13.6882 3.19103 13.5683 3.0711C13.4484 2.95117 13.2857 2.88379 13.1161 2.88379H10.5581C10.3885 2.88379 10.2258 2.95117 10.1059 3.0711C9.98594 3.19103 9.91854 3.35369 9.91854 3.5233V12.4765Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
