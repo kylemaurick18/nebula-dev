@@ -45,16 +45,16 @@ export default function DashboardPage() {
   const activities = user.activities
 
   const allTimeEarnings = activities
-    .filter((a) => a.type === 'earning')
-    .reduce((sum, a) => sum + a.amount, 0)
+    .filter((a: Activity) => a.type === 'earning')
+    .reduce((sum: number, a: Activity) => sum + a.amount, 0)
 
   const deposits = activities
-    .filter((a) => a.type === 'deposit')
-    .reduce((sum, a) => sum + a.amount, 0)
+    .filter((a: Activity) => a.type === 'deposit')
+    .reduce((sum: number, a: Activity) => sum + a.amount, 0)
 
   const withdrawals = activities
-    .filter((a) => a.type === 'withdrawal')
-    .reduce((sum, a) => sum + a.amount, 0)
+    .filter((a: Activity) => a.type === 'withdrawal')
+    .reduce((sum: number, a: Activity) => sum + a.amount, 0)
 
   const netCapital = deposits - withdrawals
 
@@ -145,7 +145,7 @@ export default function DashboardPage() {
           <div className="portfolio-header-flex">
             <div className="flex dynamic-col-gap-1">
               <div className="portfolio-balance-container">
-                <div className="portfolio-balance">${activities.reduce((acc, curr) => acc + curr.amount, 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                <div className="portfolio-balance">${activities.reduce((acc: number, curr: Activity) => acc + curr.amount, 0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   <span className="portfolio-balance-cents">.00</span>
                 </div>
                 <div className="text-m-muted">Available balance</div>
