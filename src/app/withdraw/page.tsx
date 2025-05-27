@@ -9,7 +9,7 @@ import Image from 'next/image'
 export default function WithdrawPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
-  const [user, setUser] = useState<Linkny>(null)
+  const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

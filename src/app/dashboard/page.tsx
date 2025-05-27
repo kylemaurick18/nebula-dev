@@ -20,7 +20,7 @@ interface Activity {
 export default function DashboardPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
-  const [user, setUser] = useState<Linkny>(null)
+  const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

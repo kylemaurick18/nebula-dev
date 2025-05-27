@@ -12,7 +12,7 @@ export default function EditUserPage() {
   const router = useRouter()
   const { data: session, status } = useSession()
 
-  const [user, setUser] = useState<Linkny>(null)
+  const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
 
