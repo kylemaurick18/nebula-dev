@@ -126,11 +126,14 @@ body {
   cursor: pointer;
   background-color: #1a1b1b;
   border-radius: 8px;
+  flex: none;
   justify-content: center;
   align-items: center;
   height: 34px;
+  min-height: 34px;
   padding: 0 12px;
   font-family: Geist, sans-serif;
+  font-size: 14px;
   font-weight: 500;
   display: flex;
 }
@@ -190,11 +193,14 @@ body {
   cursor: pointer;
   background-color: #fffffff2;
   border-radius: 8px;
+  flex: none;
   justify-content: center;
   align-items: center;
   height: 34px;
+  min-height: 34px;
   padding: 0 12px;
   font-family: Nebula, sans-serif;
+  font-size: 14px;
   font-weight: 500;
   text-decoration: none;
   display: flex;
@@ -344,6 +350,7 @@ body {
   height: 34px;
   padding: 0 12px;
   font-family: Nebula, sans-serif;
+  font-size: 14px;
   font-weight: 500;
   text-decoration: none;
   display: flex;
@@ -408,7 +415,7 @@ body {
 
 .stats-card {
   grid-column-gap: 50px;
-  grid-row-gap: 38px;
+  grid-row-gap: 50px;
   background-color: #131314;
   border-radius: 10px;
   justify-content: flex-start;
@@ -507,8 +514,8 @@ body {
 }
 
 .canvas {
-  max-width: 60%;
   width: 100%;
+  max-width: 60%;
   height: 100%;
   -webkit-mask-image: linear-gradient(to right, #0000 0%, #000 40% 100%);
   mask-image: linear-gradient(to right, #0000 0%, #000 40% 100%);
@@ -788,7 +795,7 @@ body {
   flex: none;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: 323px;
   height: auto;
   margin-bottom: 20px;
   padding: 21px;
@@ -1068,6 +1075,7 @@ body {
     height: 100%;
     min-height: 150px;
     max-height: 150px;
+    display: none;
   }
 
   .auth-form-container {
