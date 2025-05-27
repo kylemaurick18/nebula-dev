@@ -7,6 +7,15 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
+interface Activity {
+  id: string
+  type: string
+  description: string
+  date: string
+  commissionFee: number
+  amount: number
+}
+
 export default function EditUserPage() {
   const { id } = useParams()
   const router = useRouter()
@@ -78,13 +87,13 @@ export default function EditUserPage() {
 
   const activities = user.activities || []
 
-  const earnings = activities.filter(a => a.type === 'earning').reduce((sum, a) => sum + a.amount, 0)
-  const deposits = activities.filter(a => a.type === 'deposit').reduce((sum, a) => sum + a.amount, 0)
-  const withdrawals = activities.filter(a => a.type === 'withdrawal').reduce((sum, a) => sum + a.amount, 0)
+  const earnings = activities.filter((a: Activity) => a.type === 'earning').reduce((sum: number, a: Activity) => sum + a.amount, 0)
+  const deposits = activities.filter((a: Activity) => a.type === 'deposit').reduce((sum: number, a: Activity) => sum + a.amount, 0)
+  const withdrawals = activities.filter((a: Activity) => a.type === 'withdrawal').reduce((sum: number, a: Activity) => sum + a.amount, 0)
   const netCapital = deposits - withdrawals
 
   const estimatedYield = netCapital > 0 ? ((earnings / netCapital) * 100).toFixed(2) : '0.00'
-  const maxRisk = activities.length > 0 ? (activities.reduce((acc, a) => acc + Math.abs(a.amount), 0) / activities.length).toFixed(2) : '0.00'
+  const maxRisk = activities.length > 0 ? (activities.reduce((acc: number, a: Activity) => acc + Math.abs(a.amount), 0) / activities.length).toFixed(2) : '0.00'
   const accountType = user.accountType || 'Standard'
   const createdOn = activities.length > 0 ? new Date(activities[0].date).toLocaleDateString() : new Date(user.createdAt).toLocaleDateString()
 
