@@ -49,7 +49,7 @@ export default function SignInPage() {
         <div className="auth-form-container">
           <div>
             <div className="auth-heading">Welcome back</div>
-            <div className="auth-sub-text">Sign in to see your activities</div>
+            <div className="auth-sub-text">Sign in to see your earnings</div>
 
             {error && <div className="form-error-msg">{error}</div>}
 
@@ -73,7 +73,7 @@ export default function SignInPage() {
               />
             </div>
 
-            <div className="flex space-between">
+            <div className="auth-btn-flex">
               <button className="btn-grey" onClick={() => router.push('/sign-up')}>
                 <div>Create an account</div>
               </button>

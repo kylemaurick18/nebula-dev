@@ -151,7 +151,7 @@ export default function SignUpPage() {
             </div>
           </div>
 
-          <div className="flex space-between">
+          <div className="auth-btn-flex">
             <button className="btn-grey" onClick={() => router.push('/sign-in')}>
               <div>Already have an account?</div>
             </button>

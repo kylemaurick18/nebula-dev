@@ -829,11 +829,57 @@ body {
   width: 30%;
 }
 
+.auth-btn-flex {
+  justify-content: space-between;
+  display: flex;
+}
+
+.auth-btn-flex.space-between {
+  justify-content: space-between;
+}
+
+.auth-btn-flex.space-between.mb-24 {
+  margin-bottom: 24px;
+}
+
+.auth-btn-flex.col-gap-12 {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}
+
+.auth-btn-flex.col-gap-12.align-y-center {
+  align-items: center;
+}
+
+.auth-btn-flex.col-gap-12.align-y-center.align-x-right {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.auth-btn-flex.dynamic-col-gap-1 {
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+}
+
+.auth-btn-flex.col-gap-6 {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+}
+
+.auth-btn-flex.col-gap-6.align-y-center {
+  align-items: center;
+}
+
 @media screen and (max-width: 991px) {
   .auth-card {
     grid-column-gap: 32px;
     grid-row-gap: 32px;
     width: 90%;
+  }
+
+  .btn-grey {
+    height: 36px;
+    min-height: 36px;
   }
 
   .flex.dynamic-col-gap-1 {
@@ -844,6 +890,7 @@ body {
 
   .btn-white {
     height: 36px;
+    min-height: 36px;
   }
 
   .page-container {
@@ -929,6 +976,12 @@ body {
     grid-column-gap: 32px;
     grid-row-gap: 32px;
   }
+
+  .auth-btn-flex.dynamic-col-gap-1 {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    flex-flow: column;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -976,6 +1029,16 @@ body {
   .flex-display-desktop {
     display: none;
   }
+
+  .auth-btn-flex {
+    flex-flow: column;
+  }
+
+  .auth-btn-flex.dynamic-col-gap-1 {
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+    flex-flow: row;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -991,6 +1054,7 @@ body {
     border-radius: 0;
     flex-flow: column;
     width: 100%;
+    height: auto;
     padding-top: 30px;
     padding-right: 14px;
   }
@@ -1033,7 +1097,12 @@ body {
     grid-row-gap: 30px;
   }
 
+  .btn-white {
+    order: -1;
+  }
+
   .auth-graphics-mobile {
+    width: 292px;
     display: block;
   }
 
@@ -1073,7 +1142,7 @@ body {
   .text-m-muted {
     font-size: 14px;
   }
-  
+
   .stats-divider {
     display: none;
   }
@@ -1142,6 +1211,16 @@ body {
     width: 100%;
     padding-top: 30px;
     padding-right: 14px;
+  }
+
+  .auth-btn-flex {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+  }
+
+  .auth-btn-flex.dynamic-col-gap-1 {
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
   }
 }
 
