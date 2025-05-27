@@ -32,11 +32,15 @@ export default function SignInPage() {
       <div className="auth-card">
         <div id="grain" className="auth-card-graphics-container">
           <Image
+            width={383}
+            height={581}
             src="/images/login-graphics.webp"
             alt=""
             className="auth-graphics"
           />
           <Image
+            width={292}
+            height={100}
             src="/images/login-graphics-mobile.webp"
             alt=""
             className="auth-graphics-mobile"
