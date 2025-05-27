@@ -1,15 +1,22 @@
 import { getToken } from 'next-auth/jwt'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+function extractUserId(req: NextRequest): string {
+  const segments = req.nextUrl.pathname.split('/')
+  return segments[segments.indexOf('users') + 1]
+}
+
+export async function GET(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
   if (!token || token.role !== 'ADMIN') {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  const userId = extractUserId(req)
+
   const user = await prisma.user.findUnique({
-    where: { id: params.id },
+    where: { id: userId },
     include: { activities: true },
   })
 
@@ -18,16 +25,17 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
   return NextResponse.json(user)
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
   if (!token || token.role !== 'ADMIN') {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  const userId = extractUserId(req)
   const body = await req.json()
 
   const updated = await prisma.user.update({
-    where: { id: params.id },
+    where: { id: userId },
     data: {
       firstName: body.firstName,
       lastName: body.lastName,
