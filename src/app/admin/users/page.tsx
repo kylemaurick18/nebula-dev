@@ -9,7 +9,7 @@ import Image from 'next/image'
 export default function AdminUsersPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
-  const [users, setUsers] = useState<Linkny[]>([])
+  const [users, setUsers] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
