@@ -18,7 +18,7 @@ export default function EditUserPage() {
 
   useEffect(() => {
     if (status === 'loading') return
-    if (!session || session.user.role !== 'ADMIN') {
+    if (!(session?.user?.role === 'ADMIN')) {
       router.push('/sign-in')
       return
     }
