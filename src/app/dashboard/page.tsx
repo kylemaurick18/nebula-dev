@@ -7,7 +7,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 
-
 interface Activity {
   id: string
   type: string
@@ -23,6 +22,7 @@ export default function DashboardPage() {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
+  // Fetch user data
   useEffect(() => {
     if (status === 'loading') return
     if (!session) {
@@ -37,6 +37,38 @@ export default function DashboardPage() {
         setLoading(false)
       })
   }, [status, session])
+
+  // Mobile menu toggle logic
+  useEffect(() => {
+    const menuButton = document.querySelector('.mobile-menu-btn');
+    const sideMenu = document.querySelector('.side-menu');
+
+    if (!menuButton || !sideMenu) return;
+
+    const toggleMenu = (event: Event) => {
+      event.stopPropagation();
+      sideMenu.classList.toggle('active');
+    };
+
+    const handleClickOutside = (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (
+        !sideMenu.contains(target) &&
+        !menuButton.contains(target) &&
+        sideMenu.classList.contains('active')
+      ) {
+        sideMenu.classList.remove('active');
+      }
+    };
+
+    menuButton.addEventListener('click', toggleMenu);
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      menuButton.removeEventListener('click', toggleMenu);
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   if (loading || status === 'loading') {
     return <div className="text-white p-8">Loading dashboard...</div>
@@ -72,14 +104,14 @@ export default function DashboardPage() {
 
   let runningBalance = 0
   const sorted = [...activities].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-  
+
   for (const curr of sorted) {
     const hour = new Date(curr.date)
     hour.setSeconds(0, 0)
     const minuteKey = hour.toISOString()
-  
+
     runningBalance += curr.amount
-  
+
     const last = hourlyData[hourlyData.length - 1]
     if (last?.hour === minuteKey) {
       last.balance = runningBalance
