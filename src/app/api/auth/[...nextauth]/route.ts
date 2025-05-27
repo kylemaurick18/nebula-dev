@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { compare } from "bcryptjs"
 import prisma from "@/lib/prisma"
+import { type NextRequest } from "next/server"
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -48,5 +49,13 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 }
 
+// Explicit wrapper for compatibility with App Router and Vercel
 const handler = NextAuth(authOptions)
-export { handler as GET, handler as POST }
+
+export function GET(req: NextRequest, ctx: any) {
+  return handler(req, ctx)
+}
+
+export function POST(req: NextRequest, ctx: any) {
+  return handler(req, ctx)
+}
