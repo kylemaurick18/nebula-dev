@@ -2,7 +2,10 @@ import { getToken } from 'next-auth/jwt'
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(
+  req: Request,
+  context: { params: { id: string } }
+) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
 
   if (!token || token.role !== 'ADMIN') {
@@ -10,7 +13,7 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
   }
 
   await prisma.earning.delete({
-    where: { id: params.id },
+    where: { id: context.params.id },
   })
 
   return NextResponse.json({ success: true })
