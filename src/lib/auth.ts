@@ -1,11 +1,9 @@
 import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { PrismaAdapter } from '@auth/prisma-adapter'
 import { prisma } from './prisma'
 import bcrypt from 'bcryptjs'
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
   session: {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, // 30 days
@@ -32,13 +30,13 @@ export const authOptions: NextAuthOptions = {
           }
         })
 
-        if (!user || !user?.password) {
+        if (!user || !user?.passwordHash) {
           throw new Error('Invalid credentials')
         }
 
         const isCorrectPassword = await bcrypt.compare(
           credentials.password,
-          user.password
+          user.passwordHash
         )
 
         if (!isCorrectPassword) {
@@ -48,7 +46,7 @@ export const authOptions: NextAuthOptions = {
         return {
           id: user.id,
           email: user.email,
-          name: user.name,
+          name: `${user.firstName} ${user.lastName}`,
           role: user.role
         }
       }
