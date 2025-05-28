@@ -1,9 +1,19 @@
 import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { PrismaAdapter } from '@auth/prisma-adapter'
 import { prisma } from './prisma'
-import { compare } from 'bcryptjs'
+import bcrypt from 'bcryptjs'
 
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
+  session: {
+    strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
+  },
+  pages: {
+    signIn: '/sign-in',
+  },
   providers: [
     CredentialsProvider({
       name: 'credentials',
@@ -13,66 +23,60 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          return null
+          throw new Error('Invalid credentials')
         }
 
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email }
+          where: {
+            email: credentials.email
+          }
         })
 
-        if (!user) {
-          return null
+        if (!user || !user?.password) {
+          throw new Error('Invalid credentials')
         }
 
-        const isPasswordValid = await compare(credentials.password, user.passwordHash)
+        const isCorrectPassword = await bcrypt.compare(
+          credentials.password,
+          user.password
+        )
 
-        if (!isPasswordValid) {
-          return null
+        if (!isCorrectPassword) {
+          throw new Error('Invalid credentials')
         }
 
         return {
           id: user.id,
           email: user.email,
-          name: `${user.firstName} ${user.lastName}`,
+          name: user.name,
           role: user.role
         }
       }
     })
   ],
-  session: {
-    strategy: 'jwt',
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-    updateAge: 24 * 60 * 60, // 24 hours
-  },
-  pages: {
-    signIn: '/sign-in',
-  },
   callbacks: {
-    async session({ session, token }) {
-      if (token) {
-        session.user.id = token.id as string
-        session.user.name = token.name as string
-        session.user.email = token.email as string
-        session.user.role = token.role as string
-      }
-      return session
-    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id
+        token.email = user.email
+        token.name = user.name
         token.role = user.role
       }
       return token
+    },
+    async session({ session, token }) {
+      if (token && session.user) {
+        session.user.id = token.id
+        session.user.name = token.name
+        session.user.email = token.email
+        session.user.role = token.role
+      }
+      return session
     }
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-  debug: process.env.NODE_ENV === 'development',
-  jwt: {
-    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   cookies: {
     sessionToken: {
-      name: `next-auth.session-token`,
+      name: process.env.NODE_ENV === 'production' ? '__Secure-next-auth.session-token' : 'next-auth.session-token',
       options: {
         httpOnly: true,
         sameSite: 'lax',

@@ -14,8 +14,13 @@ export default function AdminUsersPage() {
 
   useEffect(() => {
     if (status === 'loading') return
-    if (!session || session.user.role !== 'ADMIN') {
-      router.push('/sign-in')
+
+    const role = session?.user?.role
+
+    if (!role) return
+
+    if (role !== 'ADMIN') {
+      router.replace('/dashboard')
       return
     }
 
@@ -25,7 +30,11 @@ export default function AdminUsersPage() {
         setUsers(data)
         setLoading(false)
       })
-  }, [status, session])
+      .catch(error => {
+        console.error('Error fetching users:', error)
+        setLoading(false)
+      })
+  }, [status, session, router])
 
   if (loading) return <div className="text-white p-8">Loading users...</div>
 
