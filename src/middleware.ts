@@ -13,8 +13,13 @@ export default withAuth(
     }
 
     // Check admin access for admin routes
-    if (path.startsWith('/admin') && token?.role !== 'ADMIN') {
-      return NextResponse.redirect(new URL('/dashboard', req.url))
+    if (path.startsWith('/admin')) {
+      if (!token) {
+        return NextResponse.redirect(new URL('/sign-in', req.url))
+      }
+      if (token.role !== 'ADMIN') {
+        return NextResponse.redirect(new URL('/dashboard', req.url))
+      }
     }
 
     // For all other cases, just continue with the request
