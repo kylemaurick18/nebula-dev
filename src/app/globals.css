@@ -263,7 +263,6 @@ body {
   justify-content: flex-start;
   align-items: stretch;
   width: 100%;
-  min-height: 100vh;
   padding: 30px 28px 28px;
   display: flex;
   overflow: scroll;
@@ -795,7 +794,7 @@ body {
   flex: none;
   justify-content: center;
   align-items: center;
-  width: 323px;
+  width: 210px;
   height: auto;
   margin-bottom: 20px;
   padding: 21px;
@@ -1043,6 +1042,67 @@ body {
   text-align: right;
 }
 
+.deposit-flex-container {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  display: flex;
+}
+
+.deposit-flex-container.space-between {
+  justify-content: space-between;
+}
+
+.deposit-flex-container.space-between.mb-24 {
+  margin-bottom: 24px;
+}
+
+.deposit-flex-container.col-gap-12 {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}
+
+.deposit-flex-container.col-gap-12.align-y-center {
+  align-items: center;
+}
+
+.deposit-flex-container.col-gap-12.align-y-center.align-x-right {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.deposit-flex-container.dynamic-col-gap-1 {
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+}
+
+.deposit-flex-container.col-gap-6 {
+  grid-column-gap: 6px;
+  grid-row-gap: 6px;
+}
+
+.deposit-flex-container.col-gap-6.align-y-center {
+  align-items: center;
+}
+
+.deposit-crypto-type {
+  margin-bottom: 25px;
+  display: flex;
+}
+
+.deposit-crypto-type.col-gap-8 {
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+}
+
+.deposit-crypto-type.y-align-top {
+  align-items: flex-start;
+}
+
+.deposit-crypto-type.col-gap-12 {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}
+
 @media screen and (max-width: 991px) {
   .auth-card {
     grid-column-gap: 32px;
@@ -1160,6 +1220,17 @@ body {
     grid-column-gap: 32px;
     grid-row-gap: 32px;
   }
+
+  .deposit-flex-container {
+    grid-column-gap: 12px;
+    grid-row-gap: 12px;
+  }
+
+  .deposit-flex-container.dynamic-col-gap-1 {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    flex-flow: column;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -1216,6 +1287,28 @@ body {
     grid-column-gap: 40px;
     grid-row-gap: 40px;
     flex-flow: row;
+  }
+
+  .deposit-options-flex, .deposit-card.tether {
+    width: 100%;
+  }
+
+  .deposit-flex-container {
+    flex-flow: column;
+  }
+
+  .deposit-flex-container.dynamic-col-gap-1 {
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+    flex-flow: row;
+  }
+
+  .deposit-details {
+    display: none;
+  }
+
+  .deposit-crypto-type {
+    margin-bottom: 0;
   }
 }
 
@@ -1402,6 +1495,10 @@ body {
     grid-row-gap: 30px;
   }
 
+  .deposit-options-flex {
+    width: 100%;
+  }
+
   .deposit-card {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
@@ -1418,6 +1515,15 @@ body {
 
   .text-l {
     font-size: 14px;
+  }
+
+  .deposit-flex-container {
+    flex-flow: column;
+  }
+
+  .deposit-flex-container.dynamic-col-gap-1 {
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
   }
 }
 
