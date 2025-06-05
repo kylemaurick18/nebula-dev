@@ -878,102 +878,169 @@ body {
 }
 
 .deposit-options-flex {
+  width: 50%;
+}
+
+.deposit-options-li {
+  flex-flow: row;
+  padding: 14px;
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-  max-width: 400px;
-}
-
-.payment-option {
-  background-color: #131314;
-  border-radius: 10px;
-  padding: 22px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border: 1px solid #1f1f1f;
-}
-
-.payment-option:hover {
-  border-color: #2f2f2f;
-}
-
-.payment-option.selected {
-  border-color: #4f4f4f;
-  background-color: #1a1b1b;
-}
-
-.payment-method-icon {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
-
-.payment-option-badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  color: #4CAF50;
-}
-
-.green-tag {
-  width: 8px;
-  height: 8px;
-  background-color: #4CAF50;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.yellow-tag {
-  width: 8px;
-  height: 8px;
-  background-color: #FFC107;
-  border-radius: 50%;
-  display: inline-block;
 }
 
 .deposit-card {
+  grid-column-gap: 38px;
+  grid-row-gap: 38px;
   background-color: #131314;
   border-radius: 10px;
-  padding: 22px;
-  flex: 1;
-  border: 1px solid #1f1f1f;
+  flex: none;
+  justify-content: flex-start;
+  align-items: center;
+  width: 50%;
+  margin-bottom: 20px;
+  padding: 22px 22px 14px;
+  overflow: scroll;
+  box-shadow: inset 0 0 0 1px #1f1f1f;
+}
+
+.deposit-card._30--width {
+  flex: 0 auto;
+  width: 30%;
+}
+
+.crypto-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.db-text-sm {
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.db-text-sm.db-text-sm-bold {
+  font-weight: 500;
+}
+
+.db-text-sm.opacity-75 {
+  color: #ffffffa6;
+}
+
+.payment-option-badge {
+  color: #fff;
+  flex: none;
+  margin-left: auto;
+  font-family: Geist Mono, sans-serif;
+  font-size: 15px;
+}
+
+.green-tag {
+  background-color: #34ff8c;
+  border-radius: 100%;
+  width: 8px;
+  height: 8px;
+  margin-bottom: 1px;
+  margin-right: 8px;
+  display: inline-flex;
+}
+
+.payment-method-icon {
+  width: 23px;
+}
+
+.spacer-25 {
+  width: 1px;
+  height: 25px;
+  min-height: 25px;
+}
+
+.payment-option {
+  outline-offset: 0px;
+  cursor: pointer;
+  background-color: #131314;
+  border-radius: 10px;
+  outline: 0 #0000;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 18px;
+  font-size: 15px;
+  transition: background-color .1s linear;
+  box-shadow: inset 0 0 0 1px #1f1f1f;
+}
+
+.payment-option:hover {
+  background-color: #2e2f3040;
+}
+
+.payment-option.disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.payment-option.disabled:hover {
+  background-color: #0f101140;
+}
+
+.opacity-50 {
+  opacity: .5;
+}
+
+.db-text-m {
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .flex-x {
   display: flex;
-  align-items: center;
-}
-
-.flex-x.col-gap-12 {
-  gap: 12px;
 }
 
 .flex-x.col-gap-8 {
-  gap: 8px;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
 }
 
 .flex-x.y-align-top {
   align-items: flex-start;
 }
 
-.flex-x.y-align-middle {
-  align-items: center;
+.flex-x.col-gap-12 {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
 }
 
-.spacer-25 {
-  height: 25px;
+.yellow-tag {
+  background-color: #ffb134;
+  border-radius: 100%;
+  width: 8px;
+  height: 8px;
+  margin-bottom: 1px;
+  margin-right: 8px;
+  display: inline-flex;
 }
 
 .text-l {
-  font-size: 18px;
-  font-weight: 500;
   color: #fff;
+  white-space: nowrap;
+  word-break: keep-all;
+  font-family: Geist Mono, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
 }
 
-.opacity-50 {
-  opacity: 0.5;
+.text-l.capital {
+  text-transform: uppercase;
+}
+
+.text-l.profit {
+  color: #2dd4ad;
+}
+
+.text-l.loss {
+  color: #ffffff80;
+}
+
+.text-l.text-align-right {
+  text-align: right;
 }
 
 @media screen and (max-width: 991px) {
@@ -1089,12 +1156,9 @@ body {
     flex-flow: column;
   }
 
-  .deposit-options-flex {
-    max-width: 100%;
-  }
-  
   .deposit-card {
-    margin-top: 20px;
+    grid-column-gap: 32px;
+    grid-row-gap: 32px;
   }
 }
 
@@ -1338,12 +1402,22 @@ body {
     grid-row-gap: 30px;
   }
 
-  .deposit-options-flex {
-    max-width: 100%;
-  }
-  
   .deposit-card {
-    margin-top: 20px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    flex-flow: column;
+    width: 100%;
+    padding-top: 24px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .payment-option {
+    margin-bottom: 0;
+  }
+
+  .text-l {
+    font-size: 14px;
   }
 }
 
