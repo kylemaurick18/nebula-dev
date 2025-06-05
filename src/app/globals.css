@@ -103,7 +103,7 @@ body {
   background-color: #202121;
 }
 
-.form-input.selectable {
+.form-input.wallet-address {
   -webkit-user-select: text;
   user-select: text;
 }
@@ -1363,9 +1363,11 @@ body {
     overflow: hidden;
   }
 
-  .form-input.selectable {
+  .form-input.wallet-address {
+    overflow-wrap: anywhere;
     -webkit-user-select: text;
     user-select: text;
+    height: 60px;
   }
 
   .flex.dynamic-col-gap-1 {

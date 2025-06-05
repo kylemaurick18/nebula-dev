@@ -403,7 +403,7 @@ export default function DepositPage() {
                   <div className="flex">
                     <div className="form-label">Crypto address</div>
                   </div>
-                  <p className="form-input selectable">{selectedMethod.address}</p>
+                  <p className="form-input wallet-address">{selectedMethod.address}</p>
                   <button 
                     onClick={handleCopyAddress}
                     className="btn-outlined w-inline-block mt-8"
