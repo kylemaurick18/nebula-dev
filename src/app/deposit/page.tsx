@@ -77,6 +77,7 @@ export default function DepositPage() {
   const [loading, setLoading] = useState(true)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('usdt')
+  const [copySuccess, setCopySuccess] = useState(false)
 
   // Payment method configurations
   const paymentMethods = {
@@ -108,7 +109,7 @@ export default function DepositPage() {
     },
     eth: {
       name: 'Etherium',
-      network: 'ETH ERC20',
+      network: 'ERC20',
       icon: 'eth',
       address: '0xd00050dad204a67E7d84C6800F3301310318967F',
       qrCode: '/images/eth-489219.png',
@@ -169,6 +170,16 @@ export default function DepositPage() {
         })
     }
   }, [status, session, router])
+
+  const handleCopyAddress = async () => {
+    try {
+      await navigator.clipboard.writeText(selectedMethod.address)
+      setCopySuccess(true)
+      setTimeout(() => setCopySuccess(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy address:', err)
+    }
+  }
 
   if (status === 'loading' || loading) {
     return <LoadingSpinner />
@@ -393,6 +404,12 @@ export default function DepositPage() {
                     <div className="form-label">Crypto address</div>
                   </div>
                   <p className="form-input selectable">{selectedMethod.address}</p>
+                  <button 
+                    onClick={handleCopyAddress}
+                    className="btn-outlined w-inline-block mt-8"
+                  >
+                    <div>{copySuccess ? 'Copied!' : 'Copy wallet address'}</div>
+                  </button>
                 </div>
               </div>
 

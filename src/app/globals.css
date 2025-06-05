@@ -1472,7 +1472,6 @@ body {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     flex-flow: column;
-    width: 100%;
     padding-top: 24px;
     padding-left: 18px;
     padding-right: 14px;
