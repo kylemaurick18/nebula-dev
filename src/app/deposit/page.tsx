@@ -210,7 +210,7 @@ export default function DepositPage() {
                       </div>
                     )}
                   </div>
-                    <div>
+                  <div className="deposit-details">
                     <div className="flex-x col-gap-8">
                       <div className="text-m-muted">Processing time</div>
                       <div className="text-m">{method.processingTime}</div>
@@ -244,7 +244,7 @@ export default function DepositPage() {
                     <span className="yellow-tag"></span>Unavailable
                   </div>
                 </div>
-                <div>
+                <div className="deposit-details">
                   <div className="flex-x col-gap-8">
                     <div className="text-m-muted">Processing time</div>
                     <div className="text-m">Instant - 30mins</div>
@@ -277,7 +277,7 @@ export default function DepositPage() {
                     <span className="yellow-tag"></span>Unavailable
                   </div>
                 </div>
-                <div>
+                <div className="deposit-details">
                   <div className="flex-x col-gap-8">
                     <div className="text-m-muted">Processing time</div>
                     <div className="text-m">Instant - 30mins</div>
