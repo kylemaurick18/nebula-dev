@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
+import LoadingSpinner from '../components/LoadingSpinner'
 
 interface Activity {
   id: string
@@ -65,7 +66,7 @@ export default function DashboardPage() {
   }, [status, session, router])
 
   if (status === 'loading' || loading) {
-    return <div className="text-white p-8">Loading dashboard...</div>
+    return <LoadingSpinner />
   }
 
   if (!session) {

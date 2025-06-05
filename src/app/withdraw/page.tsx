@@ -5,6 +5,7 @@ import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 export default function WithdrawPage() {
   const { data: session, status } = useSession()
@@ -55,7 +56,7 @@ export default function WithdrawPage() {
   }, [status, session, router])
 
   if (status === 'loading' || loading) {
-    return <div className="text-white p-8">Loading withdraw page...</div>
+    return <LoadingSpinner />
   }
 
   if (!session) {

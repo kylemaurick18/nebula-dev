@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import LoadingSpinner from '../../../components/LoadingSpinner'
 
 interface Activity {
   id: string
@@ -82,7 +83,7 @@ export default function EditUserPage() {
     location.reload()
   }
 
-  if (loading) return <div className="text-white p-8">Loading user...</div>
+  if (loading) return <LoadingSpinner />
   if (!user) return <div className="text-white p-8">User not found</div>
 
   const activities = user.activities || []

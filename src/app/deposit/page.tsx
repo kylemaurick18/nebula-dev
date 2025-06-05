@@ -5,6 +5,7 @@ import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 const CryptoIcon = ({ type }: { type: 'btc' | 'usdt' | 'eth' }) => {
   const icons = {
@@ -145,7 +146,7 @@ export default function DepositPage() {
   }, [status, session, router])
 
   if (status === 'loading' || loading) {
-    return <div className="text-white p-8">Loading deposit page...</div>
+    return <LoadingSpinner />
   }
 
   if (!session) {

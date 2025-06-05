@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
+import LoadingSpinner from '../../components/LoadingSpinner'
 
 export default function AdminUsersPage() {
   const { data: session, status } = useSession()
@@ -36,7 +37,7 @@ export default function AdminUsersPage() {
       })
   }, [status, session, router])
 
-  if (loading) return <div className="text-white p-8">Loading users...</div>
+  if (loading) return <LoadingSpinner />
 
   return (
     <div>

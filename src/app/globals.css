@@ -980,6 +980,10 @@ body {
   background-color: #0f101140;
 }
 
+.payment-option.selected {
+  background-color: #2e2f3040;
+}
+
 .opacity-50 {
   opacity: .5;
 }
@@ -1524,6 +1528,36 @@ body {
   .deposit-flex-container.dynamic-col-gap-1 {
     grid-column-gap: 30px;
     grid-row-gap: 30px;
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #0A0A0A;
+  gap: 16px;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  color: #9FA0A0;
+  font-family: Nebula, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
