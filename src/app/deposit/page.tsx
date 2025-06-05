@@ -181,7 +181,7 @@ export default function DepositPage() {
             </div>
           </div>
 
-          <div className="flex col-gap-12">
+          <div className="deposit-flex-container">
             <div className="deposit-options-flex">
               {Object.entries(paymentMethods).map(([key, method]) => (
                 <div 
@@ -189,7 +189,7 @@ export default function DepositPage() {
                   className={`payment-option ${key === selectedPaymentMethod ? 'selected' : ''}`}
                   onClick={() => setSelectedPaymentMethod(key)}
                 >
-                  <div className="flex-x y-align-top">
+                  <div className="deposit-crypto-type">
                     <div>
                       <div className="flex-x col-gap-12 y-align-middle">
                         <Image 
@@ -210,8 +210,7 @@ export default function DepositPage() {
                       </div>
                     )}
                   </div>
-                  <div className="spacer-25"></div>
-                  <div>
+                    <div>
                     <div className="flex-x col-gap-8">
                       <div className="text-m-muted">Processing time</div>
                       <div className="text-m">{method.processingTime}</div>
@@ -228,7 +227,7 @@ export default function DepositPage() {
                 </div>
               ))}
               <div className="payment-option disabled">
-                <div className="flex-x y-align-top">
+                <div className="deposit-crypto-type">
                   <div>
                     <div className="flex-x col-gap-12 y-align-middle">
                       <Image 
@@ -245,7 +244,6 @@ export default function DepositPage() {
                     <span className="yellow-tag"></span>Unavailable
                   </div>
                 </div>
-                <div className="spacer-25"></div>
                 <div>
                   <div className="flex-x col-gap-8">
                     <div className="text-m-muted">Processing time</div>
@@ -262,7 +260,7 @@ export default function DepositPage() {
                 </div>
               </div>
               <div className="payment-option disabled">
-                <div className="flex-x y-align-top">
+                <div className="deposit-crypto-type">
                   <div>
                     <div className="flex-x col-gap-12 y-align-middle">
                       <Image 
@@ -279,7 +277,6 @@ export default function DepositPage() {
                     <span className="yellow-tag"></span>Unavailable
                   </div>
                 </div>
-                <div className="spacer-25"></div>
                 <div>
                   <div className="flex-x col-gap-8">
                     <div className="text-m-muted">Processing time</div>
