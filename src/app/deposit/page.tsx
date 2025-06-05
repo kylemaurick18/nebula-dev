@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import LoadingSpinner from '../components/LoadingSpinner'
 
-const CryptoIcon = ({ type }: { type: 'btc' | 'usdt' | 'eth' }) => {
+const CryptoIcon = ({ type }: { type: 'btc' | 'usdt' | 'eth' | 'sol' }) => {
   const icons = {
     btc: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -95,6 +95,19 @@ export default function DepositPage() {
       fee: '0.00%'
     },
     eth: {
+      name: 'Etherium',
+      network: 'ETH ERC20',
+      icon: 'eth',
+      address: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F',
+      qrCode: '/images/qr-code.svg',
+      minimumDeposit: '100 USD',
+      confirmations: '12',
+      processingTime: '5-30 mins',
+      isRecommended: false,
+      limits: '100 - 100,000 USD',
+      fee: '0.00%'
+    }
+    sol: {
       name: 'Etherium',
       network: 'ETH ERC20',
       icon: 'eth',
