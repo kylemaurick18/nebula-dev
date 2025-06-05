@@ -106,7 +106,7 @@ export default function DepositPage() {
       isRecommended: false,
       limits: '100 - 100,000 USD',
       fee: '0.00%'
-    }
+    },
     sol: {
       name: 'Etherium',
       network: 'ETH ERC20',
