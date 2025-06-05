@@ -348,44 +348,6 @@ export default function DepositPage() {
                   </div>
                 </div>
               </div>
-              <div className="payment-option disabled">
-                <div className="deposit-crypto-type">
-                  <div>
-                    <div className="flex-x col-gap-12 y-align-middle">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_2298_6)">
-                        <path d="M23.6397 14.9031C22.0369 21.3317 15.5258 25.2441 9.09642 23.641C2.66967 22.0382 -1.2427 15.5267 0.360796 9.09847C1.9628 2.6691 8.47392 -1.24365 14.9014 0.359098C21.3304 1.96185 25.2424 8.4741 23.6397 14.9031Z" fill="white"/>
-                        <path d="M17.354 11.918L13.0625 16.8379M17.354 11.9203L13.0625 7.00038" stroke="#170B33" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M17.354 11.918L6.99999 11.918" stroke="#170B33" stroke-width="2" stroke-linecap="round"/>
-                        </g>
-                        <defs>
-                        <clipPath id="clip0_2298_6">
-                        <rect width="24" height="24" fill="white"/>
-                        </clipPath>
-                        </defs>
-                      </svg>
-                      <div className="text-l">Bank transfer</div>
-                    </div>
-                  </div>
-                  <div className="payment-option-badge">
-                    <span className="yellow-tag"></span>Unavailable
-                  </div>
-                </div>
-                <div className="deposit-details">
-                  <div className="flex-x col-gap-8">
-                    <div className="text-m-muted">Processing time</div>
-                    <div className="text-m">Instant - 30mins</div>
-                  </div>
-                  <div className="flex-x col-gap-8">
-                    <div className="text-m-muted">Fee</div>
-                    <div className="text-m">0.00%</div>
-                  </div>
-                  <div className="flex-x col-gap-8">
-                    <div className="text-m-muted">Limits</div>
-                    <div className="text-m">100 - 100,000 USD</div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="deposit-card tether">
