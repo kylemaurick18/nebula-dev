@@ -6,6 +6,57 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 
+const CryptoIcon = ({ type }: { type: 'btc' | 'usdt' | 'eth' }) => {
+  const icons = {
+    btc: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip0_2294_2)">
+          <path d="M23.6397 14.9031C22.0369 21.3317 15.5258 25.2441 9.09642 23.641C2.66967 22.0382 -1.2427 15.5267 0.360796 9.09847C1.9628 2.6691 8.47392 -1.24365 14.9014 0.359098C21.3304 1.96185 25.2424 8.4741 23.6397 14.9031Z" fill="#F7931A"/>
+          <path d="M17.291 10.2908C17.5299 8.69402 16.3141 7.83564 14.6517 7.26302L15.191 5.10002L13.8744 4.77189L13.3494 6.87789C13.0032 6.79164 12.6477 6.71027 12.2945 6.62964L12.8232 4.50977L11.5074 4.18164L10.9677 6.34389C10.6812 6.27864 10.4 6.21414 10.127 6.14627L10.1285 6.13952L8.31273 5.68614L7.96248 7.09239C7.96248 7.09239 8.93935 7.31627 8.91873 7.33014C9.45198 7.46327 9.54835 7.81614 9.53223 8.09589L8.91798 10.56C8.95473 10.5694 9.00235 10.5829 9.05485 10.6039C9.01098 10.593 8.9641 10.581 8.91573 10.5694L8.05473 14.0213C7.98948 14.1833 7.8241 14.4263 7.45135 14.334C7.46448 14.3531 6.49435 14.0951 6.49435 14.0951L5.84073 15.6023L7.5541 16.0294C7.87285 16.1093 8.18523 16.1929 8.49273 16.2716L7.94785 18.4594L9.26298 18.7875L9.8026 16.623C10.1619 16.7205 10.5106 16.8105 10.8519 16.8953L10.3141 19.0496L11.6307 19.3778L12.1756 17.1941C14.4207 17.619 16.109 17.4476 16.8196 15.417C17.3922 13.782 16.7911 12.8389 15.6099 12.2239C16.4701 12.0255 17.1181 11.4596 17.291 10.2908ZM14.2827 14.5091C13.8759 16.1441 11.123 15.2603 10.2305 15.0386L10.9535 12.1403C11.846 12.363 14.708 12.804 14.2827 14.5091ZM14.69 10.2671C14.3187 11.7544 12.0275 10.9988 11.2842 10.8135L11.9397 8.18477C12.683 8.37002 15.0766 8.71577 14.69 10.2671Z" fill="white"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_2294_2">
+            <rect width="24" height="24" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+    ),
+    usdt: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip0_2294_6)">
+          <path d="M12 0C18.6271 0 24 5.37288 24 12C24 18.6271 18.6269 24 12 24C5.37312 24 0 18.6286 0 12C0 5.37144 5.37216 0 12 0Z" fill="#53AE94"/>
+          <path d="M13.481 10.4015V8.6164H17.5632V5.89648H6.44735V8.6164H10.53V10.4001C7.21199 10.5525 4.71719 11.2096 4.71719 11.9968C4.71719 12.784 7.21319 13.4411 10.53 13.5945V19.3125H13.482V13.594C16.794 13.4411 19.2838 12.7845 19.2838 11.998C19.2838 11.2115 16.794 10.5549 13.482 10.402M13.482 13.1097V13.1082C13.3987 13.1135 12.9708 13.1392 12.018 13.1392C11.2562 13.1392 10.7203 13.1176 10.5314 13.1078V13.1102C7.60007 12.9803 5.41199 12.4698 5.41199 11.859C5.41199 11.2482 7.60031 10.7385 10.5314 10.6084V12.6016C10.7234 12.6148 11.2726 12.6472 12.0305 12.6472C12.9408 12.6472 13.3985 12.6093 13.4825 12.6016V10.6084C16.4081 10.7387 18.5911 11.2497 18.5911 11.8583C18.5911 12.467 16.4071 12.9782 13.4825 13.1085" fill="white"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_2294_6">
+            <rect width="24" height="24" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+    ),
+    eth: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip0_2294_31)">
+          <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="#627EEA"/>
+          <path d="M12.3735 3V9.6525L17.9962 12.165L12.3735 3Z" fill="white" fillOpacity="0.602"/>
+          <path d="M12.3735 3L6.75 12.165L12.3735 9.6525V3Z" fill="white"/>
+          <path d="M12.3735 16.4759V20.9962L18 13.2119L12.3735 16.4759Z" fill="white" fillOpacity="0.602"/>
+          <path d="M12.3735 20.9962V16.4752L6.75 13.2119L12.3735 20.9962Z" fill="white"/>
+          <path d="M12.3735 15.43L17.9962 12.1653L12.3735 9.6543V15.43Z" fill="white" fillOpacity="0.2"/>
+          <path d="M6.75 12.1653L12.3735 15.43V9.6543L6.75 12.1653Z" fill="white" fillOpacity="0.602"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_2294_31">
+            <rect width="24" height="24" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+    )
+  };
+
+  return icons[type];
+};
+
 export default function DepositPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
@@ -19,7 +70,7 @@ export default function DepositPage() {
     usdt: {
       name: 'Tether',
       network: 'USDT TRC20',
-      icon: '/images/tether-logo.png',
+      icon: 'usdt',
       address: '9qV2fqEXE6xR9aNAgR3PJvL6PkdVbtz3AinQbznRnX9B',
       qrCode: '/images/qr-code.svg',
       minimumDeposit: '100 USD',
@@ -32,7 +83,7 @@ export default function DepositPage() {
     btc: {
       name: 'Bitcoin',
       network: 'BTC',
-      icon: '/images/Bitcoin-logo.png',
+      icon: 'btc',
       address: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
       qrCode: '/images/qr-code.svg',
       minimumDeposit: '100 USD',
@@ -45,7 +96,7 @@ export default function DepositPage() {
     eth: {
       name: 'Etherium',
       network: 'ETH ERC20',
-      icon: '/images/eth-logo.svg',
+      icon: 'eth',
       address: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F',
       qrCode: '/images/qr-code.svg',
       minimumDeposit: '100 USD',
@@ -192,13 +243,9 @@ export default function DepositPage() {
                   <div className="deposit-crypto-type">
                     <div>
                       <div className="flex-x col-gap-12 y-align-middle">
-                        <Image 
-                          src={method.icon} 
-                          alt={method.name} 
-                          width={24} 
-                          height={24} 
-                          className="payment-method-icon"
-                        />
+                        <div className="payment-method-icon">
+                          <CryptoIcon type={method.icon as 'btc' | 'usdt' | 'eth'} />
+                        </div>
                         <div className="text-l">
                           {method.name} <span className="opacity-50">({method.network})</span>
                         </div>
