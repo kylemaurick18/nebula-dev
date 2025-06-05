@@ -12,6 +12,44 @@ export default function DepositPage() {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [isMenuActive, setIsMenuActive] = useState(false)
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('usdt')
+
+  // Payment method configurations
+  const paymentMethods = {
+    usdt: {
+      name: 'Tether',
+      network: 'USDT TRC20',
+      icon: '/images/tether-logo_1tether-logo.png',
+      address: '9qV2fqEXE6xR9aNAgR3PJvL6PkdVbtz3AinQbznRnX9B',
+      qrCode: '/images/USDT-WALLET-QR-CODE.png',
+      minDeposit: 100,
+      confirmations: 15,
+      processingTime: '2-30 mins',
+      isRecommended: true
+    },
+    btc: {
+      name: 'Bitcoin',
+      network: 'BTC',
+      icon: '/images/Bitcoin-logo_1Bitcoin-logo.png',
+      address: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
+      qrCode: '/images/BTC-WALLET-QR-CODE.png',
+      minDeposit: 100,
+      confirmations: 3,
+      processingTime: '2-30 mins',
+      isRecommended: false
+    },
+    eth: {
+      name: 'Ethereum',
+      network: 'ETH ERC20',
+      icon: '/images/eth-logo.svg',
+      address: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+      qrCode: '/images/ETH-WALLET-QR-CODE.png',
+      minDeposit: 100,
+      confirmations: 12,
+      processingTime: '2-30 mins',
+      isRecommended: false
+    }
+  }
 
   // Mobile menu functionality
   useEffect(() => {
@@ -61,6 +99,8 @@ export default function DepositPage() {
   if (!session) {
     return null
   }
+
+  const selectedMethod = paymentMethods[selectedPaymentMethod as keyof typeof paymentMethods]
 
   return (
     <div className="body">
@@ -141,24 +181,77 @@ export default function DepositPage() {
           </div>
 
           <div className="flex col-gap-12">
-            <div className="card">
-              <div className="display-text-sm">Deposit USDT</div>
+            <div className="deposit-options-flex">
+              {Object.entries(paymentMethods).map(([key, method]) => (
+                <div 
+                  key={key}
+                  className={`payment-option ${selectedPaymentMethod === key ? 'selected' : ''}`}
+                  onClick={() => setSelectedPaymentMethod(key)}
+                >
+                  <div className="flex-x y-align-top">
+                    <div>
+                      <div className="flex-x col-gap-12 y-align-middle">
+                        <Image 
+                          src={method.icon} 
+                          alt={method.name} 
+                          width={24} 
+                          height={24} 
+                          className="payment-method-icon"
+                        />
+                        <div className="text-l">
+                          {method.name} <span className="opacity-50">({method.network})</span>
+                        </div>
+                      </div>
+                    </div>
+                    {method.isRecommended && (
+                      <div className="payment-option-badge">
+                        <span className="green-tag"></span>Recommended
+                      </div>
+                    )}
+                  </div>
+                  <div className="spacer-25"></div>
+                  <div>
+                    <div className="flex-x col-gap-8">
+                      <div className="text-m-muted">Processing time</div>
+                      <div className="text-m">{method.processingTime}</div>
+                    </div>
+                    <div className="flex-x col-gap-8">
+                      <div className="text-m-muted">Fee</div>
+                      <div className="text-m">0.00%</div>
+                    </div>
+                    <div className="flex-x col-gap-8">
+                      <div className="text-m-muted">Limits</div>
+                      <div className="text-m">100 - 100,000 USD</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-              <div className="full-width mb-16">
-                <div className="form-label">Network</div>
-                <div className="form-input selectable">Ethereum (ERC20)</div>
+            <div className="deposit-card">
+              <div className="display-text-sm">Deposit {selectedMethod.name}</div>
+              
+              <div className="flex col-gap-12 mb-16">
+                <div className="full-width mb-16">
+                  <div className="form-label">Network</div>
+                  <div className="form-input selectable">{selectedMethod.network}</div>
+                </div>
               </div>
 
-              <div className="full-width mb-16">
-                <div className="form-label">Crypto address</div>
-                <p className="form-input selectable">9qV2fqEXE6xR9aNAgR3PJvL6PkdVbtz3AinQbznRnX9B</p>
+              <div className="flex col-gap-12 mb-16">
+                <div className="full-width mb-16">
+                  <div className="flex">
+                    <div className="form-label">Crypto address</div>
+                  </div>
+                  <p className="form-input selectable">{selectedMethod.address}</p>
+                </div>
               </div>
 
               <div className="wallet-qr-code">
                 <Image
                   width={323}
                   height={323}
-                  src="/images/USDT-WALLET-QR-CODE.png"
+                  src={selectedMethod.qrCode}
                   loading="lazy"
                   alt="Wallet QR"
                   className="wallet-qr-code-img"
@@ -168,22 +261,22 @@ export default function DepositPage() {
               <div className="deposit-requirements">
                 <div className="deposit-requirements-li">
                   <div className="text-m-muted">Minimum Deposit</div>
-                  <div className="text-m text-align-right">100 USD</div>
+                  <div className="text-m text-align-right">{selectedMethod.minDeposit} USD</div>
                 </div>
                 <div className="deposit-requirements-li">
                   <div className="text-m-muted">Required confirmations</div>
-                  <div className="text-m text-align-right">15</div>
+                  <div className="text-m text-align-right">{selectedMethod.confirmations}</div>
                 </div>
                 <div className="deposit-requirements-li last">
                   <div className="text-m-muted">Processing time</div>
-                  <div className="text-m text-align-right">2-30 mins</div>
+                  <div className="text-m text-align-right">{selectedMethod.processingTime}</div>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="disclosure-text">
-            Nebula LTD is an Investment Firm registered in Seychelles with registration number 8423607-1...
+            Nebula LTD is an Investment Firm registered in Seychelles with registration number 8423607-1 and authorised by the Financial Services Authority (FSA) with licence number SD024. The information on this website may only be copied with the express written permission of Nebula. General Risk Warning: CFDs are leveraged products. Trading in CFDs carries a high level of risk thus may not be appropriate for all investors. The investment value can both increase and decrease and the investors may lose all their invested capital.
           </div>
         </div>
       </div>
