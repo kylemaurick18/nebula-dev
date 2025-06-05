@@ -1541,23 +1541,16 @@ body {
   gap: 16px;
 }
 
-.loading-spinner {
-  animation: spin 1s linear infinite;
+.loading-logo {
+  animation: fade-in 1s ease-in-out;
 }
 
-.loading-text {
-  color: #9FA0A0;
-  font-family: Nebula, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-@keyframes spin {
+@keyframes fade-in {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }
 
