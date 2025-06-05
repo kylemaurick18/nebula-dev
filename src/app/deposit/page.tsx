@@ -82,10 +82,10 @@ export default function DepositPage() {
   const paymentMethods = {
     usdt: {
       name: 'Tether',
-      network: 'USDT TRC20',
+      network: 'USDT-SPL',
       icon: 'usdt',
       address: '9qV2fqEXE6xR9aNAgR3PJvL6PkdVbtz3AinQbznRnX9B',
-      qrCode: '/images/qr-code.svg',
+      qrCode: '/images/usdt-789381.png',
       minimumDeposit: '100 USD',
       confirmations: '15',
       processingTime: '2-30 mins',
