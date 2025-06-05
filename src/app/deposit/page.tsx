@@ -316,13 +316,13 @@ export default function DepositPage() {
                   <div>
                     <div className="flex-x col-gap-12 y-align-middle">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_2298_2)">
+                        <g clip-path="url(#clip0_2298_6)">
                         <path d="M23.6397 14.9031C22.0369 21.3317 15.5258 25.2441 9.09642 23.641C2.66967 22.0382 -1.2427 15.5267 0.360796 9.09847C1.9628 2.6691 8.47392 -1.24365 14.9014 0.359098C21.3304 1.96185 25.2424 8.4741 23.6397 14.9031Z" fill="white"/>
-                        <path d="M4.72885 11.46H19.2713V15.0029C19.2713 16.1075 18.3759 17.0029 17.2713 17.0029H6.72885C5.62428 17.0029 4.72885 16.1075 4.72885 15.0029V11.46Z" fill="#170B33"/>
-                        <path d="M4.72885 8.99609C4.72885 7.89152 5.62428 6.99609 6.72885 6.99609H17.2713C18.3759 6.99609 19.2713 7.89152 19.2713 8.99609V9.5166H4.72885V8.99609Z" fill="#170B33"/>
+                        <path d="M17.354 11.918L13.0625 16.8379M17.354 11.9203L13.0625 7.00038" stroke="#170B33" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M17.354 11.918L6.99999 11.918" stroke="#170B33" stroke-width="2" stroke-linecap="round"/>
                         </g>
                         <defs>
-                        <clipPath id="clip0_2298_2">
+                        <clipPath id="clip0_2298_6">
                         <rect width="24" height="24" fill="white"/>
                         </clipPath>
                         </defs>
