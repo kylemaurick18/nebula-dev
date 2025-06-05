@@ -52,6 +52,18 @@ const CryptoIcon = ({ type }: { type: 'btc' | 'usdt' | 'eth' | 'sol' }) => {
           </clipPath>
         </defs>
       </svg>
+    ),
+    sol: (
+      <svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.9902 0.519531H12.0098C18.6307 0.519531 24 5.9137 24 12.5652V13.2358C24 19.8873 18.6307 25.2814 12.0098 25.2814H11.9902C5.36933 25.2814 0 19.8873 0 13.2358V12.5652C0 5.9137 5.36933 0.519531 11.9902 0.519531Z" fill="white"/>
+        <path d="M17.1288 9.83814C17.0896 9.88252 17.0405 9.91703 16.9865 9.93676C16.9325 9.96141 16.8736 9.97127 16.8147 9.97127H5.69816C5.30552 9.97127 5.1043 9.4782 5.37914 9.18236L7.20491 7.23474C7.24418 7.19036 7.29326 7.15585 7.35215 7.1312C7.40614 7.10654 7.46503 7.09668 7.52393 7.09668H18.6847C19.0822 7.09668 19.2785 7.59468 18.9988 7.89052L17.1288 9.83814ZM17.1288 18.5457C17.0454 18.6296 16.9325 18.6789 16.8147 18.6789H5.69816C5.30552 18.6789 5.1043 18.1957 5.37914 17.9097L7.20491 16.0064C7.24418 15.9621 7.29816 15.9275 7.35215 15.9078C7.40614 15.8832 7.46503 15.8733 7.52393 15.8733H18.6847C19.0822 15.8733 19.2785 16.3614 18.9988 16.6474L17.1288 18.5457ZM17.1288 11.6181C17.0454 11.5343 16.9325 11.485 16.8147 11.485H5.69816C5.30552 11.485 5.1043 11.9682 5.37914 12.2542L7.20491 14.1574C7.24418 14.2018 7.29816 14.2363 7.35215 14.256C7.40614 14.2807 7.46503 14.2906 7.52393 14.2906H18.6847C19.0822 14.2906 19.2785 13.8024 18.9988 13.5164L17.1288 11.6181Z" fill="url(#paint0_linear_2294_27)"/>
+        <defs>
+        <linearGradient id="paint0_linear_2294_27" x1="6.10082" y1="18.8234" x2="18.2994" y2="7.00178" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#CF41E8"/>
+        <stop offset="1" stop-color="#10F2B0"/>
+        </linearGradient>
+        </defs>
+      </svg>
     )
   };
 
@@ -85,8 +97,8 @@ export default function DepositPage() {
       name: 'Bitcoin',
       network: 'BTC',
       icon: 'btc',
-      address: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
-      qrCode: '/images/qr-code.svg',
+      address: 'bc1q94jhfc09s789n9t42dkywaky4r9hgvy5ecc7wt',
+      qrCode: '/images/btc-338194.png',
       minimumDeposit: '100 USD',
       confirmations: '3',
       processingTime: '10-60 mins',
@@ -98,8 +110,8 @@ export default function DepositPage() {
       name: 'Etherium',
       network: 'ETH ERC20',
       icon: 'eth',
-      address: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F',
-      qrCode: '/images/qr-code.svg',
+      address: '0xd00050dad204a67E7d84C6800F3301310318967F',
+      qrCode: '/images/eth-489219.png',
       minimumDeposit: '100 USD',
       confirmations: '12',
       processingTime: '5-30 mins',
@@ -108,15 +120,15 @@ export default function DepositPage() {
       fee: '0.00%'
     },
     sol: {
-      name: 'Etherium',
-      network: 'ETH ERC20',
-      icon: 'eth',
-      address: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F',
-      qrCode: '/images/qr-code.svg',
+      name: 'Solana',
+      network: 'SOL',
+      icon: 'sol',
+      address: '9qV2fqEXE6xR9aNAgR3PJvL6PkdVbtz3AinQbznRnX9B',
+      qrCode: '/images/solana-228192.png',
       minimumDeposit: '100 USD',
-      confirmations: '12',
-      processingTime: '5-30 mins',
-      isRecommended: false,
+      confirmations: '1',
+      processingTime: '1-2 mins',
+      isRecommended: true,
       limits: '100 - 100,000 USD',
       fee: '0.00%'
     }
@@ -258,7 +270,7 @@ export default function DepositPage() {
                     <div>
                       <div className="flex-x col-gap-12 y-align-middle">
                         <div className="payment-method-icon">
-                          <CryptoIcon type={method.icon as 'btc' | 'usdt' | 'eth'} />
+                          <CryptoIcon type={method.icon as 'btc' | 'usdt' | 'eth' | 'sol'} />
                         </div>
                         <div className="text-l">
                           {method.name} <span className="opacity-50">({method.network})</span>
