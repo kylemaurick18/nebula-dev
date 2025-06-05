@@ -102,7 +102,7 @@ export default function DepositPage() {
       minimumDeposit: '100 USD',
       confirmations: '3',
       processingTime: '10-60 mins',
-      isRecommended: false,
+      isRecommended: true,
       limits: '100 - 100,000 USD',
       fee: '0.00%'
     },
@@ -128,7 +128,7 @@ export default function DepositPage() {
       minimumDeposit: '100 USD',
       confirmations: '15',
       processingTime: '2-30 mins',
-      isRecommended: true,
+      isRecommended: false,
       limits: '100 - 100,000 USD',
       fee: '0.00%'
     }
