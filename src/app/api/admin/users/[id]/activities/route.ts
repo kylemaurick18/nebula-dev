@@ -70,18 +70,21 @@ export async function POST(req: NextRequest) {
       })
 
       if (user?.referrer) {
+        // Calculate 5% of the deposit amount for affiliate earnings
+        const affiliateAmount = Math.round(body.amount * 0.05 * 100) / 100 // Round to 2 decimal places
+
         // Add affiliate earnings to referrer
         await tx.user.update({
           where: { id: user.referrer.id },
           data: {
             affiliateEarnings: {
-              increment: 50, // $50 per deposit
+              increment: affiliateAmount,
             },
             portfolioBalance: {
-              increment: 50,
+              increment: affiliateAmount,
             },
             allTimeEarnings: {
-              increment: 50,
+              increment: affiliateAmount,
             },
           },
         })
@@ -91,9 +94,9 @@ export async function POST(req: NextRequest) {
           data: {
             userId: user.referrer.id,
             type: 'earning',
-            description: `Affiliate earnings`,
+            description: `Affiliate earnings (5% of $${body.amount.toFixed(2)} deposit)`,
             date: new Date(),
-            amount: 50,
+            amount: affiliateAmount,
             commissionFee: 0,
           },
         })
