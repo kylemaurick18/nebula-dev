@@ -99,7 +99,7 @@ export default function AdminUsersPage() {
               <div className="text-m-muted">Email</div>
               <div className="text-m-muted">Number</div>
               <div className="text-m-muted">Balance</div>
-              <div className="text-m-muted">Profit</div>
+              <div className="text-m-muted">All Time Earnings</div>
             </div>
             {users.map(user => (
               <div className="users-table-li hover" key={user.id} onClick={() => router.push(`/admin/users/${user.id}`)}>

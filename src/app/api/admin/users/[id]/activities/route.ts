@@ -29,6 +29,39 @@ export async function POST(req: NextRequest) {
       },
     })
 
+    // Update user's balance and earnings based on activity type
+    if (body.type === 'deposit') {
+      await tx.user.update({
+        where: { id: userId },
+        data: {
+          portfolioBalance: {
+            increment: body.amount,
+          },
+        },
+      })
+    } else if (body.type === 'withdrawal') {
+      await tx.user.update({
+        where: { id: userId },
+        data: {
+          portfolioBalance: {
+            decrement: body.amount,
+          },
+        },
+      })
+    } else if (body.type === 'earning') {
+      await tx.user.update({
+        where: { id: userId },
+        data: {
+          portfolioBalance: {
+            increment: body.amount,
+          },
+          allTimeEarnings: {
+            increment: body.amount,
+          },
+        },
+      })
+    }
+
     // If this is a deposit, handle affiliate earnings
     if (body.type === 'deposit') {
       const user = await tx.user.findUnique({
@@ -43,6 +76,12 @@ export async function POST(req: NextRequest) {
           data: {
             affiliateEarnings: {
               increment: 50, // $50 per deposit
+            },
+            portfolioBalance: {
+              increment: 50,
+            },
+            allTimeEarnings: {
+              increment: 50,
             },
           },
         })
