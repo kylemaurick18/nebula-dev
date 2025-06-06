@@ -241,6 +241,7 @@ export default function EditUserPage() {
                   className="form-input"
                   name="date"
                   type="datetime-local"
+                  defaultValue={new Date().toISOString().slice(0, 16)}
                   required
                 />
               </div>
