@@ -15,8 +15,11 @@ export async function GET(req: NextRequest) {
       firstName: true,
       lastName: true,
       email: true,
+      mobileNumber: true,
       accountType: true,
       status: true,
+      portfolioBalance: true,
+      allTimeEarnings: true,
     },
   })
 

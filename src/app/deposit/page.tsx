@@ -91,7 +91,7 @@ export default function DepositPage() {
       confirmations: '1',
       processingTime: '1-2 mins',
       isRecommended: true,
-      limits: '100 - 100,000 USD',
+      limits: '200 - 100,000 USD',
       fee: '0.00%'
     },
     btc: {
@@ -104,7 +104,7 @@ export default function DepositPage() {
       confirmations: '3',
       processingTime: '10-60 mins',
       isRecommended: true,
-      limits: '100 - 100,000 USD',
+      limits: '200 - 100,000 USD',
       fee: '0.00%'
     },
     eth: {
@@ -117,7 +117,7 @@ export default function DepositPage() {
       confirmations: '12',
       processingTime: '5-30 mins',
       isRecommended: false,
-      limits: '100 - 100,000 USD',
+      limits: '200 - 100,000 USD',
       fee: '0.00%'
     },
     usdt: {
@@ -127,10 +127,10 @@ export default function DepositPage() {
       address: '9qV2fqEXE6xR9aNAgR3PJvL6PkdVbtz3AinQbznRnX9B',
       qrCode: '/images/usdt-789381.png',
       minimumDeposit: '100 USD',
-      confirmations: '15',
-      processingTime: '2-30 mins',
+      confirmations: '1',
+      processingTime: '1-2 mins',
       isRecommended: false,
-      limits: '100 - 100,000 USD',
+      limits: '200 - 100,000 USD',
       fee: '0.00%'
     }
   }
