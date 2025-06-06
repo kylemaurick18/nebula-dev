@@ -27,7 +27,13 @@ export default withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token }) => !!token
+      authorized: ({ token, req }) => {
+        const path = req.nextUrl.pathname
+        // Allow access to root path without authentication
+        if (path === '/') return true
+        // Require authentication for all other protected routes
+        return !!token
+      }
     }
   }
 )
