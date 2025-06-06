@@ -14,17 +14,55 @@ export async function POST(req: NextRequest) {
 
   const body = await req.json()
 
-  const activity = await prisma.activity.create({
-    data: {
-      userId,
-      type: body.type,
-      description: body.description,
-      date: new Date(body.date),
-      tradeId: body.tradeId,
-      commissionFee: body.commissionFee,
-      amount: body.amount,
-    },
+  // Start a transaction to handle both the activity and potential affiliate earnings
+  const result = await prisma.$transaction(async (tx) => {
+    // Create the activity
+    const activity = await tx.activity.create({
+      data: {
+        userId,
+        type: body.type,
+        description: body.description,
+        date: new Date(body.date),
+        tradeId: body.tradeId,
+        commissionFee: body.commissionFee,
+        amount: body.amount,
+      },
+    })
+
+    // If this is a deposit, handle affiliate earnings
+    if (body.type === 'deposit') {
+      const user = await tx.user.findUnique({
+        where: { id: userId },
+        include: { referrer: true },
+      })
+
+      if (user?.referrer) {
+        // Add affiliate earnings to referrer
+        await tx.user.update({
+          where: { id: user.referrer.id },
+          data: {
+            affiliateEarnings: {
+              increment: 50, // $50 per deposit
+            },
+          },
+        })
+
+        // Create an activity record for the affiliate earnings
+        await tx.activity.create({
+          data: {
+            userId: user.referrer.id,
+            type: 'earning',
+            description: `Affiliate earnings from ${user.firstName} ${user.lastName}'s deposit`,
+            date: new Date(),
+            amount: 50,
+            commissionFee: 0,
+          },
+        })
+      }
+    }
+
+    return activity
   })
 
-  return NextResponse.json(activity)
+  return NextResponse.json(result)
 }
