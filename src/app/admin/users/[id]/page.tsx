@@ -79,7 +79,7 @@ export default function EditUserPage() {
   const handleDelete = async (activityId: string) => {
     const confirmDelete = confirm('Delete this activity?')
     if (!confirmDelete) return
-    await fetch(`/api/admin/activities/${activityId}`, { method: 'DELETE' })
+    await fetch(`/api/admin/users/${id}/activities/${activityId}`, { method: 'DELETE' })
     location.reload()
   }
 
