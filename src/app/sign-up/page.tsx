@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 
 export default function SignUpPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -14,8 +15,16 @@ export default function SignUpPage() {
     mobileNumber: '',
     password: '',
     confirmPassword: '',
+    affiliateCode: '',
   })
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    const ref = searchParams.get('ref')
+    if (ref) {
+      setForm(prev => ({ ...prev, affiliateCode: ref }))
+    }
+  }, [searchParams])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })

@@ -23,6 +23,7 @@ export default function DashboardPage() {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [isMenuActive, setIsMenuActive] = useState(false)
+  const [copySuccess, setCopySuccess] = useState(false)
 
   // Mobile menu functionality
   useEffect(() => {
@@ -64,6 +65,17 @@ export default function DashboardPage() {
         })
     }
   }, [status, session, router])
+
+  const handleCopyAffiliateLink = async () => {
+    const affiliateLink = `${window.location.origin}/sign-up?ref=${user.affiliateCode}`
+    try {
+      await navigator.clipboard.writeText(affiliateLink)
+      setCopySuccess(true)
+      setTimeout(() => setCopySuccess(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy affiliate link:', err)
+    }
+  }
 
   if (status === 'loading' || loading) {
     return <LoadingSpinner />
@@ -289,6 +301,34 @@ export default function DashboardPage() {
               </div>
             ))}
           </div>
+
+          <div className="affiliate-card">
+            <div className="flex-x y-align-top">
+              <div>
+                <div className="flex-x col-gap-3">
+                  <div className="display-text-sm">Affiliate earnings</div>
+                </div>
+                <div className="spacer-11"></div>
+                <div className="referrals-balance">${(user?.affiliateEarnings || 0).toFixed(2)}</div>
+              </div>
+              <div className="flex-x col-gap-12 a-right">
+                <button 
+                  onClick={handleCopyAffiliateLink}
+                  className="btn-outlined w-inline-block"
+                >
+                  <div>{copySuccess ? 'Copied!' : 'Copy affiliate link'}</div>
+                </button>
+              </div>
+            </div>
+            <div className="spacer-40"></div>
+            <div className="flex-x col-gap-3">
+              <div className="text-m">
+                Invite your friends and earn $50 each time they deposit. Your affiliate code is: 
+                <span className="affiliate-code"> {user?.affiliateCode}</span>
+              </div>
+            </div>
+          </div>
+
           <div className="disclosure-text">Nebula LTD is an Investment Firm registered in Seychelles with registration number 8423607-1 and authorised by the Financial Services Authority (FSA) with licence number SD024. The information on this website may only be copied with the express written permission of Nebula. General Risk Warning: CFDs are leveraged products. Trading in CFDs carries a high level of risk thus may not be appropriate for all investors. The investment value can both increase and decrease and the investors may lose all their invested capital. <br /><br />Under no circumstances shall the Company have any liability to any person or entity for any loss or damage in whole or part caused by, resulting from, or relating to any transactions related to CFDs.N complies with the Payment Card Industry Data Security Standard (PCI DSS) to ensure your security and privacy. We conduct regular vulnerability scans and penetration tests in accordance with the PCI DSS requirements for our business mode<br />
           </div>
         </div>

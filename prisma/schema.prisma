@@ -28,6 +28,11 @@ model User {
   maxRiskPerDay    Float
   role             Role       @default(USER)
   activities       Activity[]
+  affiliateCode    String     @unique @default(cuid())
+  referredBy       String?
+  affiliateEarnings Float     @default(0)
+  referrals        User[]     @relation("UserReferrals")
+  referrer         User?      @relation("UserReferrals", fields: [referredBy], references: [id])
 }
 
 model Activity {

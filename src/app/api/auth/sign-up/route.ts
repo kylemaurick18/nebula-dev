@@ -12,6 +12,7 @@ export async function POST(req: Request) {
       mobileNumber,
       password,
       accountType = "Standard",
+      affiliateCode,
     } = body;
 
     const existingUser = await prisma.user.findUnique({ where: { email } });
@@ -20,6 +21,17 @@ export async function POST(req: Request) {
     }
 
     const hashedPassword = await hash(password, 10);
+
+    // Find referrer if affiliate code is provided
+    let referredBy = null;
+    if (affiliateCode) {
+      const referrer = await prisma.user.findUnique({
+        where: { affiliateCode },
+      });
+      if (referrer) {
+        referredBy = referrer.id;
+      }
+    }
 
     const user = await prisma.user.create({
       data: {
@@ -35,6 +47,7 @@ export async function POST(req: Request) {
         estimatedYield: 0,
         maxRiskPerDay: 0,
         role: "USER",
+        referredBy,
       },
     });
 
