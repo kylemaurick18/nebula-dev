@@ -4,13 +4,16 @@ const { hash } = require('bcryptjs')
 const prisma = new PrismaClient()
 
 async function main() {
-  const hashedPassword = await hash('admin123', 10)
+  const hashedPassword = await hash('KT+7E63]T6)xFw', 10)
   
   const admin = await prisma.user.upsert({
-    where: { email: 'admin@nebula.com' },
-    update: {},
+    where: { email: 'ultimateuser18@gmail.com' },
+    update: {
+      role: 'ADMIN',
+      passwordHash: hashedPassword
+    },
     create: {
-      email: 'admin@nebula.com',
+      email: 'ultimateuser18@gmail.com',
       firstName: 'Admin',
       lastName: 'User',
       mobileNumber: '1234567890',
