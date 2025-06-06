@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 
-export default function SignUpPage() {
+function SignUpPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [form, setForm] = useState({
@@ -177,5 +177,13 @@ export default function SignUpPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function SignUpPageWrapper() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignUpPage />
+    </Suspense>
   )
 }
