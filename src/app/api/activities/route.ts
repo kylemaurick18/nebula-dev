@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
           data: {
             userId: user.referrer.id,
             type: 'earning',
-            description: `Affiliate earnings from ${user.firstName} ${user.lastName}'s deposit`,
+            description: `Affiliate earnings`,
             date: new Date(),
             amount: 50,
             commissionFee: 0,
